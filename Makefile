@@ -7,13 +7,13 @@ createdb:
 dropdb:
 	docker exec -it postgres13 dropdb -U root simple_bank
 
-migrate-up:
+migrateup:
 	migrate -path db/migrations -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" up
 
-migrate-down:
+migratedown:
 	migrate -path db/migrations -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" down
 
-setup-db: postgres createdb migrate-up
+setup-db: postgres createdb migrateup
 
 sqlc:
 	sqlc generate
